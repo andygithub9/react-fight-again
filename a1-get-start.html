@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>react</title>
+  </head>
+  <body>
+    <div>
+      <div class="text-gray-600">
+        <header class="mb-5">
+          <div class="bg-gray-700 p-4 text-white">react.js</div>
+        </header>
+        <main class="container mx-auto">
+          <div id="main-body" class="text-center text-3xl text-purple-800">
+            loading~
+          </div>
+          <div class="text-center my-4">
+            <button
+              class="bg-green-400 rounded shadow-md text-white font-bold py-2 px-3 cursor-pointer tracking-widest hover:bg-yellow-400"
+              onclick="btn_onclick()"
+            >
+              button
+            </button>
+          </div>
+        </main>
+
+        <footer class="mt-5">
+          <div class="bg-gray-300 p-4 text-black">footer</div>
+        </footer>
+      </div>
+    </div>
+    <script>
+      let dom = document.getElementById("main-body");
+
+      // React.createElement(html元素, html元素的屬性, html元素的內容)
+      let el = React.createElement("p", {}, "react 第一課");
+
+      // ReactDOM.render(被渲染的html元素來源, 渲染到目的地元素)
+      ReactDOM.render(el, dom);
+
+      let btn_onclick = () => {
+        let msg = "您已經入門啦~";
+        let el = React.createElement("p", {}, msg);
+        ReactDOM.render(el, dom);
+      };
+    </script>
+  </body>
+</html>
