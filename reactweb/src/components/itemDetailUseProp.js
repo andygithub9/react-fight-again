@@ -1,11 +1,16 @@
 // Fragment 類似於 div 元素，它的用處是最外層不用不需要用 div 包起來，多個 Fragment 可以在結構的同一層
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
-const ItemDetail = () => {
-  const ItemHref = "https://codepen.io/codetimeio/pen/RYMEJe";
-  const ItemImgSrc = "https://picsum.photos/600/400/?random";
-  const ItemArticleTitle = "Article Title123";
-  const ItemDate = "11/1/19";
+const ItemDetail = (prop) => {
+  // useState(初始狀態) 方法會返回一個陣列，元素 0 是初始狀態，元素 1 是改變狀態的方法
+  let [article, setArticle] = useState(prop.article);
+
+  const btn_click = (e) => {
+    console.log("btn_click", Math.random());
+
+    // 調用 setArticle 改變 article 變量的狀態
+    setArticle("標題被改變了");
+  };
 
   return (
     <Fragment>
@@ -13,11 +18,11 @@ const ItemDetail = () => {
       {/* tailwind rwd 的寫法 https://tailwindcss.com/docs/responsive-design */}
       <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
         <article className="overflow-hidden rounded-lg shadow-lg">
-          <a href={ItemHref}>
+          <a href={prop.link}>
             <img
               alt="Placeholder"
               className="block h-auto w-full"
-              src={ItemImgSrc}
+              src={prop.image}
             />
           </a>
 
@@ -25,13 +30,22 @@ const ItemDetail = () => {
             <h1 className="text-lg">
               <a
                 className="no-underline hover:underline text-black"
-                href={ItemHref}
+                href={prop.link}
               >
-                {ItemArticleTitle}
+                {article}
               </a>
             </h1>
-            <p className="text-grey-darker text-sm">{ItemDate}</p>
+            <p className="text-grey-darker text-sm">{prop.date}</p>
           </header>
+
+          <div className="text-center py-3">
+            <button
+              onClick={btn_click}
+              className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded mx-auto"
+            >
+              改變標題
+            </button>
+          </div>
         </article>
       </div>
     </Fragment>
