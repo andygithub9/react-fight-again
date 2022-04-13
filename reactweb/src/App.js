@@ -1,8 +1,8 @@
-import './App.css'
-import Header from './components/Header'
+import "./App.css";
+import Header from "./components/Header";
 // import ItemDetail from './components/itemDetail'
 // import ItemDetailUseProp from './components/itemDetailUseProp'
-import AwsForm from './components/AwsForm'
+import AwsForm from "./components/AwsForm";
 
 function App() {
   // const itemData = {
@@ -41,6 +41,17 @@ function App() {
   //   )
   // })
 
+  const AwsFormData = {
+    accessKeyID: "asdfg",
+    secretAccessKey: "12345",
+    regionID: "ap-northeast-1",
+  };
+
+  // 傳到子組件的函數
+  const awsFormHandler = () => {
+    console.log(AwsFormData);
+  };
+
   return (
     <div>
       <Header></Header>
@@ -61,11 +72,12 @@ function App() {
           {/* 遍歷 dataList 數組中元素內容返回的子組件 */}
           {/* {listItem} */}
 
-          <AwsForm></AwsForm>
+          {/* 通過 myEvent props 將 awsFormHandler 函數傳入到子組件 */}
+          <AwsForm AwsFormData={AwsFormData} myEvent={awsFormHandler}></AwsForm>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

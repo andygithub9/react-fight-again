@@ -1,25 +1,31 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState } from "react";
 
-const AwsFoem = () => {
-  const [textAccessKeyID, setAccessKeyID] = useState('')
-  const [textSecretAccessKey, setSecretAccessKey] = useState('')
-  const [selectRegionID, setRegionID] = useState('us-east-1')
+const AwsForm = (props) => {
+  const [textAccessKeyID, setAccessKeyID] = useState(
+    props.AwsFormData.accessKeyID
+  );
+  const [textSecretAccessKey, setSecretAccessKey] = useState(
+    props.AwsFormData.secretAccessKey
+  );
+  const [selectRegionID, setRegionID] = useState(props.AwsFormData.regionID);
 
   const textAccessKeyID_onchange = (e) => {
-    setAccessKeyID(e.target.value)
-  }
+    setAccessKeyID(e.target.value);
+  };
 
   const textSecretAccessKey_onchange = (e) => {
-    setSecretAccessKey(e.target.value)
-  }
+    setSecretAccessKey(e.target.value);
+  };
 
   const selectRegionID_onchange = (e) => {
-    setRegionID(e.target.value)
-  }
+    setRegionID(e.target.value);
+  };
 
   const btn_onclick = () => {
-    console.log(textAccessKeyID, textSecretAccessKey, selectRegionID)
-  }
+    // 父組件通過 props.myEvent 傳遞 awsFormHandler 函數到子組件，
+    // 再由子組件調用
+    props.myEvent();
+  };
 
   return (
     <Fragment>
@@ -120,7 +126,7 @@ const AwsFoem = () => {
         <hr />
       </form>
     </Fragment>
-  )
-}
+  );
+};
 
-export default AwsFoem
+export default AwsForm;
