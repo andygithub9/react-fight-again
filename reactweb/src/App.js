@@ -1,8 +1,11 @@
-import "./App.css";
-import Header from "./components/Header";
+import React, { useState } from 'react'
+import Header from './components/Header'
 // import ItemDetail from './components/itemDetail'
 // import ItemDetailUseProp from './components/itemDetailUseProp'
-import AwsForm from "./components/AwsForm";
+// import AwsForm from './components/AwsForm'
+// import MyStyle from './components/MyStyle'
+// import MyClass from './components/MyClass'
+import AwsFormUseRef from './components/AwsFormUseRef'
 
 function App() {
   // const itemData = {
@@ -41,16 +44,36 @@ function App() {
   //   )
   // })
 
-  const AwsFormData = {
-    accessKeyID: "asdfg",
-    secretAccessKey: "12345",
-    regionID: "ap-northeast-1",
-  };
+  // const AwsFormData = {
+  //   accessKeyID: 'asdfg',
+  //   secretAccessKey: '12345',
+  //   regionID: 'ap-northeast-1',
+  // }
+
+  // const [msg, setMsg] = useState('hello msg')
 
   // 傳到子組件的函數
-  const awsFormHandler = () => {
-    console.log(AwsFormData);
-  };
+  // const awsFormHandler = async (formData) => {
+  //   const postData = JSON.stringify({
+  //     accessKeyID: formData.accessKeyID,
+  //     secretAccessKey: formData.secretAccessKey,
+  //     regionID: formData.regionID,
+  //   })
+
+  //   const res = await fetch('http://127.0.0.1:8888/login', {
+  //     method: 'POST',
+  //     body: postData,
+  //     headers: {
+  //       'content-type': 'application/json',
+  //     },
+  //   })
+
+  //   const resData = await res.json()
+  //   // JSON.stringify() 的格式化輸出
+  //   // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify#the_space_argument
+  //   setMsg(JSON.stringify(resData.body, null, '\t'))
+  //   console.log(resData)
+  // }
 
   return (
     <div>
@@ -73,11 +96,21 @@ function App() {
           {/* {listItem} */}
 
           {/* 通過 myEvent props 將 awsFormHandler 函數傳入到子組件 */}
-          <AwsForm AwsFormData={AwsFormData} myEvent={awsFormHandler}></AwsForm>
+          {/* <AwsForm AwsFormData={AwsFormData} myEvent={awsFormHandler}></AwsForm> */}
         </div>
+        {/* <pre className="w-full max-w-md mx-auto">{msg}</pre> */}
+
+        {/* 動態 style */}
+        {/* <MyStyle></MyStyle> */}
+
+        {/* 動態 class */}
+        {/* <MyClass></MyClass> */}
+
+        {/* 使用 Ref 綁定元素 */}
+        <AwsFormUseRef></AwsFormUseRef>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

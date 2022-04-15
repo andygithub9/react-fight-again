@@ -1,34 +1,15 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useRef } from 'react'
 
 const AwsForm = (props) => {
-  const [textAccessKeyID, setAccessKeyID] = useState(
-    props.AwsFormData.accessKeyID,
-  )
-  const [textSecretAccessKey, setSecretAccessKey] = useState(
-    props.AwsFormData.secretAccessKey,
-  )
-  const [selectRegionID, setRegionID] = useState(props.AwsFormData.regionID)
+  // useRef() 會返回一個對象，將此對象綁訂到 jsx 元素上就可以獲取該元素的值
+  const refAccessKeyID = useRef()
+  const refSecretAccessKey = useRef()
+  const refRegionID = useRef()
 
-  const textAccessKeyID_onchange = (e) => {
-    setAccessKeyID(e.target.value)
-  }
-
-  const textSecretAccessKey_onchange = (e) => {
-    setSecretAccessKey(e.target.value)
-  }
-
-  const selectRegionID_onchange = (e) => {
-    setRegionID(e.target.value)
-  }
-
-  const btn_onclick = () => {
-    // 父組件通過 props.myEvent 傳遞 awsFormHandler 函數到子組件，
-    // 再由子組件調用
-    props.myEvent({
-      accessKeyID: textAccessKeyID,
-      secretAccessKey: textSecretAccessKey,
-      regionID: selectRegionID,
-    })
+  const click_trigger = () => {
+    console.log(refAccessKeyID.current.value)
+    console.log(refSecretAccessKey.current.value)
+    console.log(refRegionID.current.value)
   }
 
   return (
@@ -48,8 +29,7 @@ const AwsForm = (props) => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="textAccessKeyID"
               type="text"
-              value={textAccessKeyID}
-              onChange={textAccessKeyID_onchange}
+              ref={refAccessKeyID}
             />
           </div>
         </div>
@@ -67,8 +47,7 @@ const AwsForm = (props) => {
               className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="textSecretAccessKey"
               type="password"
-              value={textSecretAccessKey}
-              onChange={textSecretAccessKey_onchange}
+              ref={refSecretAccessKey}
             />
           </div>
         </div>
@@ -86,8 +65,7 @@ const AwsForm = (props) => {
               <select
                 id="selectRegionID"
                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                value={selectRegionID}
-                onChange={selectRegionID_onchange}
+                ref={refRegionID}
               >
                 <option value="us-east-1">美國東部 (弗吉尼亞北部)</option>
                 <option value="ap-northeast-1">亞太地區 (東京)</option>
@@ -120,7 +98,7 @@ const AwsForm = (props) => {
             <button
               className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
               type="button"
-              onClick={btn_onclick}
+              onClick={click_trigger}
             >
               確定
             </button>

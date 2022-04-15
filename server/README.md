@@ -5,6 +5,7 @@ npm init -y
 npm i express -S
 npm i nodemon -D
 npm i body-parser -S
+npm i cors -S
 ```
 
 ## package.json
