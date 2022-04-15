@@ -31,3 +31,19 @@ PageAbout.js
 <br />
 <Outlet /> {/* 顯示子路由的區域 */}
 ```
+
+## 使用 useNavigate 導航到指定的 path
+
+https://stackoverflow.com/questions/63471931/using-history-with-react-router-dom-v6
+https://reacttraining.com/blog/react-router-v6-pre/#suspense-ready-navigation
+
+```js
+// useNavigate 會返回一個函數，在此函數傳入 path 會導航到該 path 對應的元素
+const navigate = useNavigate();
+const btn_login_click = () => {
+  navigate("/login");
+};
+const btn_logout_click = () => {
+  navigate("/");
+};
+```
