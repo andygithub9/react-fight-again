@@ -8,7 +8,7 @@ const initialState = {
 
 const mySlice = createSlice({
   name: 'my',
-  initialState,
+  initialState:initialState,
   reducers: {
     add(state, payload) {
       console.log(state, 'state');

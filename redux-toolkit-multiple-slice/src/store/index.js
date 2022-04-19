@@ -1,52 +1,18 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
 
-// 初始化狀態
-const mywebInitialState = {
-  sitename: 'my web site',
-  count: 0
-};
+import authSlice from './authSlice'
+import mywebSlice from './mywebSlice'
 
-const initialAuthState = {
-  isAuthed: false
-};
-
-const mywebSlice = createSlice({
-  name: 'myweb',
-  initialState: mywebInitialState,
-  reducers: {
-    add(state) {
-      state.count++;
-    },
-    minus(state) {
-      state.count--;
-    },
-    multiply(state, action) {
-      state.count *= action.payload;
-    }
-  }
-});
-
-const authSlice = createSlice({
-  name: 'auth',
-  initialState: initialAuthState,
-  reducers: {
-    login(state) {
-      state.isAuthed = true;
-    },
-    logout(state) {
-      state.isAuthed = false;
-    }
-  }
-});
-
+// 配置 store
 const store = configureStore({
+  // reducer: {
+  //   切片的 name: 切片.reducer,
+  //   切片的 name: 切片.reducer,
+  // }
   reducer: {
     myweb: mywebSlice.reducer,
-    auth: authSlice.reducer
-  }
-});
-
-export const myAction = mywebSlice.actions;
-export const authAction = authSlice.actions;
-
-export default store;
+    auth: authSlice.reducer,
+  },
+})
+// 導出 store
+export default store
